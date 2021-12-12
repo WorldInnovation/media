@@ -13,10 +13,10 @@ public class MovieMapper implements RowMapper<Movie> {
     public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
         Movie movie = new Movie();
         movie.setId(rs.getInt("ID"));
-        movie.setNameRussian(rs.getString("NAME_RU"));
-        movie.setNameNative(rs.getString("NAME_EN"));
-        movie.setYear(rs.getInt("RELEASE_YEAR"));
-        movie.setGanre(rs.getString("GANRE"));
+        movie.setNameRu(rs.getString("NAME_RU"));
+        movie.setNameEn(rs.getString("NAME_EN"));
+        movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
+     //   movie.setDescription(rs.getString("DESCRIPTION"));
         movie.setRating(rs.getDouble("RATING"));
         movie.setPrice(rs.getDouble("PRICE"));
         movie.setPicturePath(rs.getString("PICTURE_PATH"));

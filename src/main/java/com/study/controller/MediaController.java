@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1/movie")
+@RequestMapping("/api/v1")
 public class MediaController {
     private final DefaultMovieService defaultMovieService;
 
@@ -20,6 +20,7 @@ public class MediaController {
 
     @ResponseBody
     @GetMapping(produces = "application/json")
+    @RequestMapping("/movie")
     public List<Movie> getAllMovies() {
         return defaultMovieService.getAllMovies();
     }
