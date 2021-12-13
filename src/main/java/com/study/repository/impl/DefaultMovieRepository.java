@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -22,13 +21,6 @@ public class DefaultMovieRepository implements MediaRepository {
     }
 
     public List<Movie> getAllMovies() {
-       /* List<Movie> movieList = new ArrayList<>();
-        Movie movie = new Movie();
-        movie.setGenre("best");
-        movie.setReleaseYear(2021);
-        movie.setNameEn("Cool");
-        movieList.add(movie);
-        return  movieList;*/
         return jdbcTemplate.query(SELECT_ALL, rowMapper);
     }
 }
