@@ -4,6 +4,6 @@ import com.study.model.Movie;
 
 import java.util.List;
 
-public interface MovieSrvice {
+public interface MovieService {
     List<Movie> getAllMovies();
 }
