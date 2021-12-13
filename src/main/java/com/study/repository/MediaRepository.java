@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MediaRepository {
     List<Movie> getAllMovies();
+
+    List<Movie> getRandomMovies(int count);
 }

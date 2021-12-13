@@ -19,4 +19,10 @@ public class DefaultMovieService implements MovieService {
     public List<Movie> getAllMovies() {
         return movieRepository.getAllMovies();
     }
+
+    @Override
+    public List<Movie> getRandomMovies(int count) {
+        return movieRepository.getRandomMovies(count);
+    }
+
 }
