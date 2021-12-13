@@ -1,27 +1,22 @@
 package com.study.config;
 
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-
-public class WebAppInitializer implements WebApplicationInitializer {
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext webApplicationContext = new AnnotationConfigWebApplicationContext();
-        webApplicationContext.register(MovieContext.class);
-        webApplicationContext.register(RootContext.class);
-
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("movie"
-                , new DispatcherServlet(webApplicationContext));
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
-
-        servletContext.addListener(new ContextLoaderListener(webApplicationContext));
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[]{RootConfig.class};
     }
+
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[]{MovieConfig.class};
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/api/v1/*"};
+    }
+
 }

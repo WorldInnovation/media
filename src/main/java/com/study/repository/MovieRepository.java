@@ -4,7 +4,7 @@ import com.study.model.Movie;
 
 import java.util.List;
 
-public interface MediaRepository {
+public interface MovieRepository {
     List<Movie> getAllMovies();
 
     List<Movie> getRandomMovies(int count);

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.mock;
 
 class DefaultMovieServiceTest {
@@ -42,5 +43,19 @@ class DefaultMovieServiceTest {
     void getAllMovies() {
         List<Movie> allMovies = movieService.getAllMovies();
         assertEquals(movieExpected, allMovies);
+    }
+
+    @Test
+    void getAllMoviesNotEquals() {
+        List<Movie> allMovies = movieService.getAllMovies();
+        List<Movie> wrongMovies = new ArrayList<>();
+        Movie movie5 = new Movie();
+        movie5.setId(5);
+        Movie movie6 = new Movie();
+        movie6.setId(6);
+        wrongMovies.add(movie5);
+        wrongMovies.add(movie6);
+
+        assertNotEquals(wrongMovies, allMovies);
     }
 }

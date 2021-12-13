@@ -1,34 +1,25 @@
 package com.study.mapper;
 
 import com.study.model.Movie;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoSession;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+@ExtendWith(MockitoExtension.class)
 class MovieMapperTest {
 
     @Mock
     ResultSet resultSetMock;
 
-    MockitoSession mockitoSession;
     MovieMapper movieMapper = new MovieMapper();
 
-    @BeforeEach
-    void before() {
-        mockitoSession = Mockito.mockitoSession().initMocks(this).startMocking();
-    }
-
-    @AfterEach
-    void after() {
-        mockitoSession.finishMocking();
-    }
     @Test
     void mapRowTest() throws SQLException {
         Mockito.when(resultSetMock.getInt("ID")).thenReturn(1);
@@ -48,8 +39,7 @@ class MovieMapperTest {
         movie.setRating(10.00);
         movie.setPicturePath("path1");
 
-
         Movie movieActual = movieMapper.mapRow(resultSetMock, 10);
-        assertEquals(movie, movieActual);
+        Assertions.assertEquals(movie, movieActual);
     }
 }

@@ -14,19 +14,15 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:application.properties")
-@ComponentScan({"com.study.model", "com.study.repository"})
-public class RootContext implements WebMvcConfigurer {
-    @Value("${db.username}")
-    private String userName;
-    @Value("${db.password}")
-    private String password;
-    @Value("${db.url}")
-    private String url;
-    @Value("${db.driver.class}")
-    private String driverClassName;
+@ComponentScan({"com.study.service", "com.study.repository"})
+public class RootConfig implements WebMvcConfigurer {
 
     @Bean
-    public DataSource getDataSource() {
+    public DataSource dataSource(@Value("${db.username}") String userName
+            , @Value("${db.password}") String password
+            , @Value("${db.url}") String url
+            , @Value("${db.driver.class}") String driverClassName
+    ) {
         HikariConfig configuration = new HikariConfig();
         configuration.setUsername(userName);
         configuration.setPassword(password);
@@ -36,7 +32,7 @@ public class RootContext implements WebMvcConfigurer {
     }
 
     @Bean
-    public JdbcTemplate getJdbcTemplate() {
-        return new JdbcTemplate(getDataSource());
+    public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
     }
 }
