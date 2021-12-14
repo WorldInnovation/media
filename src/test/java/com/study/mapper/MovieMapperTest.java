@@ -1,7 +1,7 @@
 package com.study.mapper;
 
 import com.study.model.Movie;
-import org.junit.Assert;
+import com.study.repository.mapper.MovieMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,8 +1,8 @@
 package com.study.repository.jdbc;
 
-import com.study.mapper.MovieMapper;
 import com.study.model.Movie;
 import com.study.repository.MovieRepository;
+import com.study.repository.mapper.MovieMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
