@@ -2,7 +2,7 @@ package com.study.service.impl;
 
 import com.study.model.Movie;
 import com.study.repository.MovieRepository;
-import com.study.repository.impl.DefaultMovieRepository;
+import com.study.repository.jdbc.DefaultMovieRepository;
 import com.study.service.MovieService;
 import org.springframework.stereotype.Service;
 

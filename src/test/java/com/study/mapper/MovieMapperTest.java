@@ -24,7 +24,7 @@ class MovieMapperTest {
     void mapRowTest() throws SQLException {
         Mockito.when(resultSetMock.getInt("ID")).thenReturn(1);
         Mockito.when(resultSetMock.getString("NAME_RU")).thenReturn("Ру1");
-        Mockito.when(resultSetMock.getString("NAME_EN")).thenReturn("En1");
+        Mockito.when(resultSetMock.getString("NAME_NATIVE")).thenReturn("En1");
         Mockito.when(resultSetMock.getInt("RELEASE_YEAR")).thenReturn(2001);
         Mockito.when(resultSetMock.getDouble("RATING")).thenReturn(10.00);
         Mockito.when(resultSetMock.getDouble("PRICE")).thenReturn(1.00);

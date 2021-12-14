@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {MovieConfig.class, RootConfig.class})
-class MoviesControllerITest {
+class MovieControllerTest {
     private MockMvc mockMvc;
     private final MovieService movieService = mock(MovieService.class);
 
@@ -64,7 +64,7 @@ class MoviesControllerITest {
     }
 
     @Test
-    public void findAllServiceShouldGiveRightInformationAndControllerShouldReturnRightJson() throws Exception {
+    public void findAllServiceShouldShouldReturnRightJsonAndOk() throws Exception {
         when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie"))
                 .andExpect(status().isOk())
@@ -72,7 +72,7 @@ class MoviesControllerITest {
                  }
 
     @Test
-    public void findRandomNumberServiceShouldGiveRightInformationAndControllerShouldReturnRightJson() throws Exception {
+    public void findRandomShouldReturnRightJsonAndOk() throws Exception {
         when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie/random/3"))
                 .andExpect(status().isOk())

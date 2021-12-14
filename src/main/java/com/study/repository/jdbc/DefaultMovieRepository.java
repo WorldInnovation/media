@@ -1,4 +1,4 @@
-package com.study.repository.impl;
+package com.study.repository.jdbc;
 
 import com.study.mapper.MovieMapper;
 import com.study.model.Movie;
@@ -13,8 +13,8 @@ import java.util.List;
 
 @Repository
 public class DefaultMovieRepository implements MovieRepository {
-    private final static String SELECT_ALL = "SELECT ID, NAME_RU, NAME_EN, RELEASE_YEAR,   RATING, PRICE, PICTURE_PATH FROM MOVIES;";
-    private final static String SELECT_RANDOM = "SELECT ID, NAME_RU, NAME_EN, RELEASE_YEAR,   RATING, PRICE, PICTURE_PATH FROM MOVIES ORDER BY random() LIMIT :count;";
+    private final static String SELECT_ALL = "SELECT ID, NAME_RU, NAME_NATIVE, RELEASE_YEAR,   RATING, PRICE, PICTURE_PATH FROM MOVIES;";
+    private final static String SELECT_RANDOM = "SELECT ID, NAME_RU, NAME_NATIVE, RELEASE_YEAR,   RATING, PRICE, PICTURE_PATH FROM MOVIES ORDER BY random() LIMIT :count;";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

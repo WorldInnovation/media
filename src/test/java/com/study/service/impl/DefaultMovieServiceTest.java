@@ -2,7 +2,7 @@ package com.study.service.impl;
 
 
 import com.study.model.Movie;
-import com.study.repository.impl.DefaultMovieRepository;
+import com.study.repository.jdbc.DefaultMovieRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
