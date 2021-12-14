@@ -2,12 +2,13 @@ package com.study.repository.mapper;
 
 import com.study.model.Movie;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Service
+@JdbcMapper
 public class MovieMapper implements RowMapper<Movie> {
     @Override
     public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -21,4 +22,8 @@ public class MovieMapper implements RowMapper<Movie> {
         movie.setPicturePath(rs.getString("PICTURE_PATH"));
         return movie;
     }
+}
+@Component
+@interface JdbcMapper{
+
 }
