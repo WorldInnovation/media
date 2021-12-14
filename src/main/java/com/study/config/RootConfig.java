@@ -22,12 +22,14 @@ public class RootConfig implements WebMvcConfigurer {
             , @Value("${db.password}") String password
             , @Value("${db.url}") String url
             , @Value("${db.driver.class}") String driverClassName
+            , @Value("${db.max.pool.size}") int maxPoolSize
     ) {
         HikariConfig configuration = new HikariConfig();
         configuration.setUsername(userName);
         configuration.setPassword(password);
         configuration.setJdbcUrl(url);
         configuration.setDriverClassName(driverClassName);
+        configuration.setMaximumPoolSize(maxPoolSize);
         return new HikariDataSource(configuration);
     }
 
