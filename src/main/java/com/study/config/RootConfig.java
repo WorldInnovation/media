@@ -18,11 +18,12 @@ import javax.sql.DataSource;
 public class RootConfig implements WebMvcConfigurer {
 
     @Bean
-    public DataSource dataSource(@Value("${db.username}") String userName
-            , @Value("${db.password}") String password
-            , @Value("${db.url}") String url
-            , @Value("${db.driver.class}") String driverClassName
-            , @Value("${db.max.pool.size}") int maxPoolSize
+    public DataSource dataSource(@Value("${db.username}") String userName,
+                                 @Value("${db.password}") String password,
+                                 @Value("${db.url}") String url,
+                                 @Value("${db.driver.class}") String driverClassName,
+                                 @Value("${db.max.pool.size}") int maxPoolSize,
+                                 @Value("${db.max.pool.max.life.time}") int maxLifeTime
     ) {
         HikariConfig configuration = new HikariConfig();
         configuration.setUsername(userName);
@@ -30,6 +31,7 @@ public class RootConfig implements WebMvcConfigurer {
         configuration.setJdbcUrl(url);
         configuration.setDriverClassName(driverClassName);
         configuration.setMaximumPoolSize(maxPoolSize);
+        configuration.setMaxLifetime(maxLifeTime);
         return new HikariDataSource(configuration);
     }
 

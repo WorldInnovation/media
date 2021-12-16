@@ -32,7 +32,7 @@ class MovieMapperTest {
         Movie movie = new Movie();
         movie.setId(1);
         movie.setNameRu("Ру1");
-        movie.setNameEn("En1");
+        movie.setNameNative("En1");
         movie.setReleaseYear(2001);
         movie.setPrice(1.00);
         movie.setRating(10.00);

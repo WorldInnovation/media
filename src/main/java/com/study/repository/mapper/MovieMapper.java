@@ -15,7 +15,7 @@ public class MovieMapper implements RowMapper<Movie> {
         Movie movie = new Movie();
         movie.setId(rs.getInt("ID"));
         movie.setNameRu(rs.getString("NAME_RU"));
-        movie.setNameEn(rs.getString("NAME_NATIVE"));
+        movie.setNameNative(rs.getString("NAME_NATIVE"));
         movie.setReleaseYear(rs.getInt("RELEASE_YEAR"));
         movie.setRating(rs.getDouble("RATING"));
         movie.setPrice(rs.getDouble("PRICE"));

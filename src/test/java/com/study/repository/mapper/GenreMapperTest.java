@@ -1,7 +1,6 @@
 package com.study.repository.mapper;
 
 import com.study.model.Genre;
-import com.study.model.Movie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,8 +10,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class GenreMapperTest {
@@ -48,7 +45,7 @@ class GenreMapperTest {
         Assertions.assertNotEquals(genre, movieActual);
     }
 
-   @Test
+    @Test
     void mapRowIncorrectName() throws SQLException {
         Mockito.when(resultSetMock.getInt("ID")).thenReturn(3);
         Mockito.when(resultSetMock.getString("GENRE_NAME")).thenReturn("KinDzaDza");

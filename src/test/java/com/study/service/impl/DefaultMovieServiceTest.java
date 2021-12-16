@@ -2,6 +2,7 @@ package com.study.service.impl;
 
 
 import com.study.model.Movie;
+
 import com.study.repository.jdbc.DefaultMovieRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,20 @@ class DefaultMovieServiceTest {
 
     @Test
     void getAllMoviesNotEquals() {
+        List<Movie> allMovies = movieService.getAllMovies();
+        List<Movie> wrongMovies = new ArrayList<>();
+        Movie movie5 = new Movie();
+        movie5.setId(5);
+        Movie movie6 = new Movie();
+        movie6.setId(6);
+        wrongMovies.add(movie5);
+        wrongMovies.add(movie6);
+
+        assertNotEquals(wrongMovies, allMovies);
+    }
+
+   @Test
+    void getAll() {
         List<Movie> allMovies = movieService.getAllMovies();
         List<Movie> wrongMovies = new ArrayList<>();
         Movie movie5 = new Movie();

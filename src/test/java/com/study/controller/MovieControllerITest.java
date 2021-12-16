@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {MovieConfig.class, RootConfig.class})
-class MovieControllerTest {
+class MovieControllerITest {
     private MockMvc mockMvc;
     private final MovieService movieService = mock(MovieService.class);
 
@@ -41,7 +41,7 @@ class MovieControllerTest {
         Movie movie = new Movie();
         movie.setId(1);
         movie.setNameRu("Ру1");
-        movie.setNameEn("En1");
+        movie.setNameNative("En1");
         movie.setReleaseYear(2001);
         movie.setPrice(1.00);
         movie.setRating(10.00);
@@ -50,7 +50,7 @@ class MovieControllerTest {
         Movie movie2 = new Movie();
         movie2.setId(1);
         movie2.setNameRu("Ру2");
-        movie2.setNameEn("En2");
+        movie2.setNameNative("En2");
         movie2.setReleaseYear(2002);
         movie2.setPrice(2.00);
         movie2.setRating(2.00);
