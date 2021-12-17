@@ -8,4 +8,6 @@ public interface MovieService {
     List<Movie> getAllMovies();
 
     List<Movie> getRandomMovies(int count);
+
+    List<Movie> getMoviesByGenre(Long genreId);
 }

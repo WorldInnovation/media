@@ -23,4 +23,9 @@ public class DefaultMovieService implements MovieService {
         return movieRepository.getRandomMovies(count);
     }
 
+    @Override
+    public List<Movie> getMoviesByGenre(Long genreId) {
+        return movieRepository.getMoviesByGenreId(genreId);
+    }
+
 }

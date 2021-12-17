@@ -85,4 +85,12 @@ class MovieControllerITest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
+
+  @Test
+    public void findByGenreShouldReturnRightJsonAndOk() throws Exception {
+        when(movieService.getAllMovies()).thenReturn(movieList);
+        mockMvc.perform(get("/movie/genre/3"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
 }

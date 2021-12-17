@@ -27,4 +27,9 @@ public class MovieController {
         return movieService.getRandomMovies(count);
     }
 
+    @GetMapping(path = "/genre/{genreId}")
+    public List<Movie> getMoviesByGenre(@PathVariable Long genreId) {
+        return movieService.getMoviesByGenre(genreId);
+    }
+
 }
