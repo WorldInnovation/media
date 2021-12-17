@@ -16,7 +16,7 @@ public class DefaultMovieRepository implements MovieRepository {
     private final static String SELECT_ALL = "SELECT ID, NAME_RU, NAME_NATIVE, RELEASE_YEAR,   RATING, PRICE, PICTURE_PATH FROM MOVIES;";
     private final static String SELECT_RANDOM = "SELECT ID, NAME_RU, NAME_NATIVE, RELEASE_YEAR, RATING, PRICE, PICTURE_PATH FROM MOVIES ORDER BY random() LIMIT :count;";
     private final static String SELECT_BY_GENRE_ID = "SELECT M.ID, M.NAME_RU, M.NAME_NATIVE, M.RELEASE_YEAR, M.RATING, M.PRICE," +
-            " M.PICTURE_PATH FROM MOVIES M JOIN GENRE_TO_MOVIE GTM ON M.ID = GTM.MOVIE_ID WHERE GTM.MOVIE_ID = :genreId;";
+            " M.PICTURE_PATH FROM MOVIES M INNER JOIN GENRE_TO_MOVIE GTM ON M.ID = GTM.MOVIE_ID WHERE GTM.GENRE_ID = :genreId;";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
