@@ -21,10 +21,8 @@ public class CachedGenreService implements GenreService {
         return  Collections.unmodifiableList(genreCacheList);
     }
 
-    @PostConstruct
-    public void loadCache() {genreCacheList = genreService.getAllGenres();}
-
     @Scheduled(cron = "* * 0/4 * *")
+    @PostConstruct
     public void scheduleTaskRefreshCache() {
         genreCacheList = genreService.getAllGenres();
     }
