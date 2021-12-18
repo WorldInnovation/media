@@ -1,13 +1,11 @@
 package com.study.controller;
 
+import com.study.dto.FinedMoviesRequestData;
 import com.study.model.Movie;
 import com.study.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +16,15 @@ public class MovieController {
     private final MovieService movieService;
 
     @GetMapping
-    public List<Movie> getAllMovies() {
-        return movieService.getAllMovies();
+    public List<Movie> getAllMovies(
+            @RequestParam(name = "rating", required = false) String ratingParam) {
+        return movieService.getAllMovies(FinedMoviesRequestData.builder()
+                .ratingRequest(ratingParam)
+                .build());
     }
+/*    ) {
+        return movieService.getAllMovies();
+    }*/
 
     @GetMapping(path = "/random/{count}")
     public List<Movie> getRandomMovies(@PathVariable int count) {
@@ -28,8 +32,12 @@ public class MovieController {
     }
 
     @GetMapping(path = "/genre/{genreId}")
-    public List<Movie> getMoviesByGenre(@PathVariable Long genreId) {
-        return movieService.getMoviesByGenre(genreId);
+    public List<Movie> getMoviesByGenre(@PathVariable Long genreId,
+                                        @RequestParam(name = "rating", required = false) String ratingParam) {
+        return movieService.getMoviesByGenre(FinedMoviesRequestData.builder()
+                .ratingRequest(ratingParam)
+                .genreId(genreId)
+                .build());
     }
 
 }

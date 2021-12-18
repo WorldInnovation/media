@@ -1,6 +1,7 @@
 package com.study.service.impl;
 
 
+import com.study.dto.FinedMoviesRequestData;
 import com.study.model.Movie;
 
 import com.study.repository.jdbc.DefaultMovieRepository;
@@ -20,6 +21,7 @@ class DefaultMovieServiceTest {
     private static final List<Movie> movieExpected = new ArrayList<>();
     private static final DefaultMovieRepository defaultMovieRepository = mock(DefaultMovieRepository.class);
     private static final DefaultMovieService movieService = new DefaultMovieService(defaultMovieRepository);
+    private static final FinedMoviesRequestData FINED_MOVIES_REQUEST_DATA = new FinedMoviesRequestData();
 
     @BeforeAll
     static void init() {
@@ -42,13 +44,13 @@ class DefaultMovieServiceTest {
 
     @Test
     void getAllMovies() {
-        List<Movie> allMovies = movieService.getAllMovies();
+        List<Movie> allMovies = movieService.getAllMovies(FINED_MOVIES_REQUEST_DATA);
         assertEquals(movieExpected, allMovies);
     }
 
     @Test
     void getAllMoviesNotEquals() {
-        List<Movie> allMovies = movieService.getAllMovies();
+        List<Movie> allMovies = movieService.getAllMovies(FINED_MOVIES_REQUEST_DATA);
         List<Movie> wrongMovies = new ArrayList<>();
         Movie movie5 = new Movie();
         movie5.setId(5);
@@ -60,9 +62,9 @@ class DefaultMovieServiceTest {
         assertNotEquals(wrongMovies, allMovies);
     }
 
-   @Test
+    @Test
     void getAll() {
-        List<Movie> allMovies = movieService.getAllMovies();
+        List<Movie> allMovies = movieService.getAllMovies(FINED_MOVIES_REQUEST_DATA);
         List<Movie> wrongMovies = new ArrayList<>();
         Movie movie5 = new Movie();
         movie5.setId(5);

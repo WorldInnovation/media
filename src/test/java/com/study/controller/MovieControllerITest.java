@@ -36,6 +36,7 @@ class MovieControllerITest {
     private WebApplicationContext webApplicationContext;
 
     List<Movie> movieList = new ArrayList<>();
+
     @BeforeEach
     public void setup() {
         Movie movie = new Movie();
@@ -65,30 +66,31 @@ class MovieControllerITest {
 
     @Test
     public void findAllServiceShouldShouldReturnRightJsonAndOk() throws Exception {
-        when(movieService.getAllMovies()).thenReturn(movieList);
+        // when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-                 }
+    }
 
     @Test
     public void findRandomShouldReturnRightJsonAndOk() throws Exception {
-        when(movieService.getAllMovies()).thenReturn(movieList);
-        mockMvc.perform(get("/movie/random/3"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-    }
-   @Test
-    public void findAllGenreShouldReturnRightJsonAndOk() throws Exception {
-        when(movieService.getAllMovies()).thenReturn(movieList);
+        // when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie/random/3"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
-  @Test
+    @Test
+    public void findAllGenreShouldReturnRightJsonAndOk() throws Exception {
+        //   when(movieService.getAllMovies()).thenReturn(movieList);
+        mockMvc.perform(get("/movie/random/3"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
     public void findByGenreShouldReturnRightJsonAndOk() throws Exception {
-        when(movieService.getAllMovies()).thenReturn(movieList);
+        //  when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie/genre/3"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));

@@ -10,4 +10,8 @@ public interface MovieRepository {
     List<Movie> getRandomMovies(int count);
 
     List<Movie> getMoviesByGenreId(Long genreId);
+
+    List<Movie> getMoviesSortedByRating();
+
+    List<Movie> getMoviesByGenreIdSortedByRating();
 }
