@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -66,7 +65,6 @@ class MovieControllerITest {
 
     @Test
     public void findAllServiceShouldShouldReturnRightJsonAndOk() throws Exception {
-        // when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -74,7 +72,6 @@ class MovieControllerITest {
 
     @Test
     public void findRandomShouldReturnRightJsonAndOk() throws Exception {
-        // when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie/random/3"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -82,7 +79,6 @@ class MovieControllerITest {
 
     @Test
     public void findAllGenreShouldReturnRightJsonAndOk() throws Exception {
-        //   when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie/random/3"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -90,9 +86,37 @@ class MovieControllerITest {
 
     @Test
     public void findByGenreShouldReturnRightJsonAndOk() throws Exception {
-        //  when(movieService.getAllMovies()).thenReturn(movieList);
         mockMvc.perform(get("/movie/genre/3"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
+
+   @Test
+    public void getAllMoviesSortedByRatingTest() throws Exception {
+        mockMvc.perform(get("/movie?rating=desc"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+  @Test
+    public void getAllMoviesSortedByRatingHiCaseTest() throws Exception {
+        mockMvc.perform(get("/movie?rating=DESC"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+  @Test
+    public void getAllMoviesByGenreSortedByRatingTest() throws Exception {
+        mockMvc.perform(get("/movie/genre/5?rating=desc"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+  @Test
+    public void getAllMoviesByGenreSortedByRatingHiCaseTest() throws Exception {
+        mockMvc.perform(get("/movie/genre/3?rating=DESC"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+
 }

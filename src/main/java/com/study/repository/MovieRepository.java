@@ -13,5 +13,5 @@ public interface MovieRepository {
 
     List<Movie> getMoviesSortedByRating();
 
-    List<Movie> getMoviesByGenreIdSortedByRating();
+    List<Movie> getMoviesByGenreIdSortedByRating(Long genreId);
 }

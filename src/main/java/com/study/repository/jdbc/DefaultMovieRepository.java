@@ -56,8 +56,9 @@ public class DefaultMovieRepository implements MovieRepository {
     }
 
     @Override
-    public List<Movie> getMoviesByGenreIdSortedByRating() {
+    public List<Movie> getMoviesByGenreIdSortedByRating(Long genreId) {
         log.info("getMoviesByGenreIdSortedByRating");
-        return namedParameterJdbcTemplate.query(SELECT_BY_GENRE_ID_ORDER_BY_RATING, MOVIE_MAPPER);
+        return namedParameterJdbcTemplate.query(SELECT_BY_GENRE_ID_ORDER_BY_RATING,
+                Collections.singletonMap("genreId", genreId), MOVIE_MAPPER);
     }
 }
