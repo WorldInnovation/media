@@ -3,14 +3,16 @@ package com.study.service.impl;
 import com.study.model.Genre;
 import com.study.service.GenreService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
+@Primary
 @RequiredArgsConstructor
 public class CachedGenreService implements GenreService {
     private final GenreService genreService;
@@ -18,10 +20,10 @@ public class CachedGenreService implements GenreService {
 
     @Override
     public List<Genre> getAllGenres() {
-        return  Collections.unmodifiableList(genreCacheList);
+        return new CopyOnWriteArrayList<>(genreCacheList);
     }
 
-    @Scheduled(cron = "* * 0/4 * *")
+    @Scheduled(fixedDelay = 4 * 60 * 60 * 1000)
     @PostConstruct
     public void scheduleTaskRefreshCache() {
         genreCacheList = genreService.getAllGenres();
