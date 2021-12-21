@@ -3,14 +3,14 @@ package com.study.controller;
 import com.study.dto.FinedMoviesRequestData;
 import com.study.model.Movie;
 import com.study.service.MovieService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping(value = "/movie", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MovieController {
     private final MovieService movieService;

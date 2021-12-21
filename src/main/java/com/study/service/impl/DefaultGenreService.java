@@ -3,13 +3,13 @@ package com.study.service.impl;
 import com.study.model.Genre;
 import com.study.repository.GenreRepository;
 import com.study.service.GenreService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class DefaultGenreService implements GenreService {
     private final GenreRepository genreRepository;
 

@@ -2,7 +2,7 @@ package com.study.controller;
 
 import com.study.model.Genre;
 import com.study.service.GenreService;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping(value = "/genre", produces = MediaType.APPLICATION_JSON_VALUE)
 public class GenreController {
     private final GenreService genreService;
