@@ -17,8 +17,8 @@ public class DefaultMovieService implements MovieService {
 
     @Override
     public List<Movie> getAllMovies(FinedMoviesRequestData finedMoviesRequestData) {
-        if (finedMoviesRequestData.getRatingRequest() != null) {
-            String rating = finedMoviesRequestData.getRatingRequest();
+        if (finedMoviesRequestData.getRatingSortDirection() != null) {
+            String rating = finedMoviesRequestData.getRatingSortDirection();
             if (Objects.equals(rating.toLowerCase(), "desc")) {
                 return movieRepository.getMoviesSortedByRating();
             }
@@ -34,8 +34,8 @@ public class DefaultMovieService implements MovieService {
 
     @Override
     public List<Movie> getMoviesByGenre(FinedMoviesRequestData finedMoviesRequestData) {
-        if (finedMoviesRequestData.getRatingRequest() != null) {
-            String rating = finedMoviesRequestData.getRatingRequest();
+        if (finedMoviesRequestData.getRatingSortDirection() != null) {
+            String rating = finedMoviesRequestData.getRatingSortDirection();
             if (Objects.equals(rating.toLowerCase(), "desc")) {
                 return movieRepository.getMoviesByGenreIdSortedByRating(finedMoviesRequestData.getGenreId());
             }

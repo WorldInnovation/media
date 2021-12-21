@@ -17,14 +17,11 @@ public class MovieController {
 
     @GetMapping
     public List<Movie> getAllMovies(
-            @RequestParam (name = "rating", required = false) String ratingParam) {
+            @RequestParam(name = "rating", required = false) String ratingParam) {
         return movieService.getAllMovies(FinedMoviesRequestData.builder()
-                .ratingRequest(ratingParam)
+                .ratingSortDirection(ratingParam)
                 .build());
     }
-/*    ) {
-        return movieService.getAllMovies();
-    }*/
 
     @GetMapping(path = "/random/{count}")
     public List<Movie> getRandomMovies(@PathVariable int count) {
@@ -33,9 +30,9 @@ public class MovieController {
 
     @GetMapping(path = "/genre/{genreId}")
     public List<Movie> getMoviesByGenre(@PathVariable Long genreId,
-                                        @RequestParam (name = "rating", required = false) String ratingParam) {
+                                        @RequestParam(name = "rating", required = false) String ratingParam) {
         return movieService.getMoviesByGenre(FinedMoviesRequestData.builder()
-                .ratingRequest(ratingParam)
+                .ratingSortDirection(ratingParam)
                 .genreId(genreId)
                 .build());
     }

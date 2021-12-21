@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class FinedMoviesRequestData {
-    private String ratingRequest;
+    private String ratingSortDirection;
     private Long genreId;
 }
