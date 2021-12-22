@@ -1,0 +1,1 @@
+alter table users add column password varchar(255) not null, add column user_role varchar(25) not null;
