@@ -4,14 +4,14 @@ import com.study.dto.FinedMoviesRequestData;
 import com.study.model.Movie;
 import com.study.repository.MovieRepository;
 import com.study.service.MovieService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class DefaultMovieService implements MovieService {
     private final MovieRepository movieRepository;
 
