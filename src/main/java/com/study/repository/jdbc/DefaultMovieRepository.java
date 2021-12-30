@@ -3,7 +3,6 @@ package com.study.repository.jdbc;
 import com.study.model.Movie;
 import com.study.repository.MovieRepository;
 import com.study.repository.mapper.MovieMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Collections;
 import java.util.List;
 
-@Slf4j
 @Repository
 public class DefaultMovieRepository implements MovieRepository {
     private final static String SELECT_ALL =
@@ -34,30 +32,25 @@ public class DefaultMovieRepository implements MovieRepository {
     }
 
     public List<Movie> getAllMovies() {
-        log.debug("getAllMovies");
         return namedParameterJdbcTemplate.query(SELECT_ALL, MOVIE_MAPPER);
     }
 
     public List<Movie> getRandomMovies(int count) {
-        log.debug("getRandomMovies {}", count);
         return namedParameterJdbcTemplate.query(SELECT_RANDOM, Collections.singletonMap("count", count), MOVIE_MAPPER);
     }
 
     @Override
     public List<Movie> getMoviesByGenreId(Long genreId) {
-        log.debug("getMoviesByGenreId {}", genreId);
         return namedParameterJdbcTemplate.query(SELECT_BY_GENRE_ID, Collections.singletonMap("genreId", genreId), MOVIE_MAPPER);
     }
 
     @Override
     public List<Movie> getMoviesSortedByRating() {
-        log.debug("getMoviesSortedByRating");
         return namedParameterJdbcTemplate.query(SELECT_ALL_SORTED_BY_RATING, MOVIE_MAPPER);
     }
 
     @Override
     public List<Movie> getMoviesByGenreIdSortedByRating(Long genreId) {
-        log.debug("getMoviesByGenreIdSortedByRating");
         return namedParameterJdbcTemplate.query(SELECT_BY_GENRE_ID_ORDER_BY_RATING,
                 Collections.singletonMap("genreId", genreId), MOVIE_MAPPER);
     }

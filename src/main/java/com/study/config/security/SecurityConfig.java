@@ -1,48 +1,48 @@
 package com.study.config.security;
 
-import lombok.AllArgsConstructor;
+import com.study.config.jwt.JwtConfig;
+import com.study.config.jwt.JwtTokenVerifier;
+import com.study.config.jwt.JwtUserAndPasswordAuthFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+
+import javax.crypto.SecretKey;
 
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final SessionUserDetailsService sessionUserDetailsService;
+    private final JwtConfig jwtConfig;
+    private final SecretKey secretKey;
+
+    public SecurityConfig(SessionUserDetailsService sessionUserDetailsService, JwtConfig jwtConfig, SecretKey secretKey) {
+        this.sessionUserDetailsService = sessionUserDetailsService;
+        this.jwtConfig = jwtConfig;
+        this.secretKey = secretKey;
+    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilter(new JwtUserAndPasswordAuthFilter(authenticationManager(), jwtConfig, secretKey))
+                .addFilterAfter(new JwtTokenVerifier(jwtConfig, secretKey), JwtUserAndPasswordAuthFilter.class)
                 .authorizeRequests()
-                .antMatchers("/api/v1/movie/**").permitAll()
-                .antMatchers("/api/v1/genre/**").hasRole("USER")
+                .antMatchers("/api/v1/movie/**", "/api/v1/genre/**").permitAll()
                 .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/api/v1/login")
-                .permitAll()
-                .passwordParameter("password")
-                .usernameParameter("username")
-                .and()
-                .logout()
-                .logoutUrl("/api/v1/logout")
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
-                .permitAll();
+                .authenticated();
     }
 
     @Bean
@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
