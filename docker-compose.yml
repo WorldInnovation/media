@@ -1,0 +1,11 @@
+version: '2.0'
+services:
+  postgres:
+    image: postgres:12.7
+    restart: always
+    environment:
+      - POSTGRES_USER=developer
+      - POSTGRES_PASSWORD=developer
+      - POSTGRES_DB=cinema
+    ports:
+      - '5438:5432'
